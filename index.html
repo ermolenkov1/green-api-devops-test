@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GREEN-API Console</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">G</span>
+          <div class="brand-copy">
+            <strong>GREEN-API Console</strong>
+            <span>WhatsApp HTTP API</span>
+          </div>
+        </div>
+
+        <div class="status-chip" id="connectionState">Ready</div>
+      </header>
+
+      <section class="workspace">
+        <form class="panel request-panel" id="apiForm">
+          <div class="panel-heading">
+            <span>01</span>
+            <h1>Подключение</h1>
+          </div>
+
+          <div class="field-grid">
+            <label class="field wide-field">
+              <span>apiUrl</span>
+              <input
+                id="apiUrl"
+                name="apiUrl"
+                type="url"
+                autocomplete="off"
+                placeholder="https://api.green-api.com"
+              />
+            </label>
+
+            <label class="field">
+              <span>idInstance</span>
+              <input
+                id="idInstance"
+                name="idInstance"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="1101000001"
+                required
+              />
+            </label>
+
+            <label class="field token-field">
+              <span>ApiTokenInstance</span>
+              <input
+                id="apiTokenInstance"
+                name="apiTokenInstance"
+                type="password"
+                autocomplete="off"
+                placeholder="your-api-token"
+                required
+              />
+              <button
+                class="icon-button token-toggle"
+                id="tokenToggle"
+                type="button"
+                title="Показать токен"
+                aria-label="Показать токен"
+              >
+                ◌
+              </button>
+            </label>
+          </div>
+
+          <div class="method-block account-block">
+            <div class="method-title">
+              <span>Аккаунт</span>
+              <small>GET</small>
+            </div>
+
+            <div class="button-row">
+              <button class="action-button" type="button" data-method="getSettings">
+                getSettings
+              </button>
+              <button class="action-button" type="button" data-method="getStateInstance">
+                getStateInstance
+              </button>
+            </div>
+          </div>
+
+          <div class="method-block message-block">
+            <div class="method-title">
+              <span>Сообщение</span>
+              <small>POST</small>
+            </div>
+
+            <label class="field">
+              <span>chatId</span>
+              <input
+                id="messageChatId"
+                name="messageChatId"
+                type="text"
+                inputmode="tel"
+                autocomplete="off"
+                placeholder="77771234567"
+              />
+            </label>
+
+            <label class="field">
+              <span>message</span>
+              <textarea
+                id="messageText"
+                name="messageText"
+                rows="4"
+                placeholder="Hello World!"
+              ></textarea>
+            </label>
+
+            <button class="action-button primary" type="button" data-method="sendMessage">
+              sendMessage
+            </button>
+          </div>
+
+          <div class="method-block file-block">
+            <div class="method-title">
+              <span>Файл по ссылке</span>
+              <small>POST</small>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>chatId</span>
+                <input
+                  id="fileChatId"
+                  name="fileChatId"
+                  type="text"
+                  inputmode="tel"
+                  autocomplete="off"
+                  placeholder="77771234567"
+                />
+              </label>
+
+              <label class="field">
+                <span>fileName</span>
+                <input
+                  id="fileName"
+                  name="fileName"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="horse.png"
+                />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>urlFile</span>
+              <input
+                id="fileUrl"
+                name="fileUrl"
+                type="url"
+                autocomplete="off"
+                placeholder="https://my.site.com/img/horse.png"
+              />
+            </label>
+
+            <label class="field">
+              <span>caption</span>
+              <input
+                id="fileCaption"
+                name="fileCaption"
+                type="text"
+                autocomplete="off"
+                placeholder="optional"
+              />
+            </label>
+
+            <button class="action-button primary" type="button" data-method="sendFileByUrl">
+              sendFileByUrl
+            </button>
+          </div>
+        </form>
+
+        <section class="panel response-panel" aria-label="Ответ методов GREEN-API">
+          <div class="panel-heading">
+            <span>02</span>
+            <h2>Ответ метода</h2>
+          </div>
+
+          <div class="response-meta" aria-live="polite">
+            <span id="lastMethod">No request</span>
+            <span id="lastStatus">Idle</span>
+            <span id="lastTime">-- ms</span>
+          </div>
+
+          <textarea
+            id="responseOutput"
+            readonly
+            spellcheck="false"
+            aria-label="Ответ метода"
+          ></textarea>
+
+          <div class="console-toolbar">
+            <button class="utility-button" id="copyResponse" type="button">Copy JSON</button>
+            <button class="utility-button" id="clearResponse" type="button">Clear</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
